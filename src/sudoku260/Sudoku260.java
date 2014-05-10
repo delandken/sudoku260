@@ -27,8 +27,21 @@ public class Sudoku260 {
         theGame.getName();
         theGame.displayHelp();
         theGame.theBoard = new Board();
-        theGame.theBoard.setValueAt(0, 0, 5);
+        
+        Cell aNewSquare = new Cell();
+        aNewSquare.setValue(8);
+        
+        theGame.theBoard.setValueAt(0, 0, 4);
+        System.out.println("The value of the square is:" + aNewSquare.getValue());
         System.out.println("The value at 0, 0 is:" + theGame.theBoard.getValueAt(0, 0));
+        System.out.println("The difficulty is:" + theGame.theBoard.getDifficulty());
+        
+        //The cell group class:
+        CellGroup cells = new CellGroup();
+        System.out.println("The group is valid? " + cells.isValid());
+        cells.addCell(aNewSquare);
+        System.out.println("Is 8 allowable? " + cells.isValueAllowed(8));
+        
     }
     
     public void getName() {
