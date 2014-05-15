@@ -20,8 +20,8 @@ public class Player {
         System.out.println("Enter your name: ");
         this.playerName = input.next();
     }
-    public void setPlayerName() {
-        Player.setPlayerName = input.next();
+    public void setPlayerName(String name) {
+        playerName = name;
     }
   
        

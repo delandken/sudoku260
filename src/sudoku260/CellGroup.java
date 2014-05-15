@@ -41,6 +41,15 @@ public class CellGroup {
     }
     
     public boolean isValueAllowed(int value) {
-        return allowableValues[value - 1];
+        if (value > 9 || value < 1) {
+            System.out.println ("Number must be 1-9");
+                 return false;            
+        } 
+      for (int i = 0; i < cells.size(); i++ ) {
+          if (cells.get(i).getValue() == value) {
+              return false; 
+          } 
+      } 
+      return true; 
     }
 }
