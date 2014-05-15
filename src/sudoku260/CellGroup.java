@@ -41,15 +41,33 @@ public class CellGroup {
     }
     
     public boolean isValueAllowed(int value) {
+        
+        //Int value is our first primitive variable type.
+        // We used the <, >, and || operators
         if (value > 9 || value < 1) {
-            System.out.println ("Number must be 1-9");
+            //We have escaped the ", twice.
+            System.out.println ("\"" + value + "\" is invalid. Number must be 1-9");
                  return false;            
         } 
-      for (int i = 0; i < cells.size(); i++ ) {
-          if (cells.get(i).getValue() == value) {
-              return false; 
-          } 
-      } 
-      return true; 
+        
+        //For learning purposes, we are going to cast the int to a double for checking.
+        double cellValue;
+        
+        boolean isValid = true;
+        //int i, our counter variable is our second variable type.
+        //We used the ++ mathematical operator.
+        //We used the < operator.
+        for (int i = 0; i < cells.size(); i++ ) {
+            //We used the == operator.
+            //Casting to a double, for learning purposes
+            cellValue = (double) cells.get(i).getValue();
+            
+            //Casting again for learning purposes
+            if (cellValue == (double)value) {
+                isValid = false;
+                break;
+            } 
+        } 
+      return isValid;
     }
 }
