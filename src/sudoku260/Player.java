@@ -29,7 +29,7 @@ public class Player {
                 System.out.println ("Number must be positive");
              return false
             }
-        float winRate = (gamesWon / gamesPlayed) * 200
+        float winRate = (gamesWon / gamesPlayed) * 100
                 if (winRate == 100){
                     System.out.println ("Perfect Record! 100%");
                 }
