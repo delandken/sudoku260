@@ -26,7 +26,7 @@ public class Player {
     
     public void winRate(gamesPlayed, gamesWon){
             if (gamesWon > gamesPlayed || gamesPlayed < 1){
-                System.out.println ("Invalid. Number must be positive");
+                System.out.println ("Number must be positive");
              return false
             }
         float winRate = (gamesWon / gamesPlayed) * 200
