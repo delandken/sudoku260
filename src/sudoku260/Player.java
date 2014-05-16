@@ -23,8 +23,18 @@ public class Player {
     public void setPlayerName(String name) {
         playerName = name;
     }
-  
-       
+    
+    public void winRate(gamesPlayed, gamesWon){
+            if (gamesWon > gamesPlayed || gamesPlayed < 1){
+                System.out.println ("Invalid. Number must be positive");
+             return false
+            }
+        float winRate = (gamesWon / gamesPlayed) * 200
+                if (winRate == 100){
+                    System.out.println ("Perfect Record! 100%");
+                }
+        System.out.println ("Your win percentage is" + winRate + "%");
+    }
        
           
             
