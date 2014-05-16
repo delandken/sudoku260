@@ -20,25 +20,124 @@ import java.util.List;
  * @author Ken
  */
 public class Board {
-    private Cell[][] theBoard = new Cell[9][9];
+//    private Cell[][] theBoard = new Cell[9][9];
+    private Cell[] theBoard = new Cell[81];
+    private CellGroup[] rows = new CellGroup[9];
+    private CellGroup[] columns = new CellGroup[9];
+    private CellGroup[] subsquares = new CellGroup[9];
     
     private boolean isValid = false;
     
     private String difficulty = "Medium";
     
+    public Board() {
+        theBoard = generateBoard(theBoard, 0);
+        
+        for(int i = 0; i < theBoard.length; i++) {
+            if(i % 9 == 0) {
+                System.out.println();
+            }
+            System.out.print(theBoard[i].getValue() + " ");
+        }
+    }
+    
+    
+    private Cell[] generateBoard(Cell[] theBoard, int index) {
+        
+        //Sanity Check, index cannot be less than 0
+        //Conditional statements.
+        //Character escape sequences:
+        if(index < 0 || index > 80) {
+            System.out.println("Invalid index of \"" + index + "\". Index must be greater than 0 and less than 80");
+            return null;
+        }
+        
+        //Determine our row, and column:
+        //Two mathematical operators: /, and %
+        //Casting to int, to force integer division (for learning purposes).
+        //Two primitives:
+        int row = (int)(index / 9);
+        int column = index % 9;
+        
+        //We need to make a new cell for this space:
+        theBoard[index] = new Cell();
+        
+        //Make sure there is a row, and column:
+        if(rows[row] == null) {
+            rows[row] = new CellGroup();
+        }
+        //Assign the cell to this row.
+        theBoard[index].assignToGroup(rows[row]);
+        
+        if(columns[column] == null) {
+            columns[column] = new CellGroup();
+        }
+        //Assign the cell to this column.
+        theBoard[index].assignToGroup(columns[column]);
+        
+        
+        //Generate the list of all possible values:
+        List<Integer> numbers = new ArrayList<Integer>();
+        for(int i = 0; i < 10; i++) {
+            numbers.add(i);
+        }
+        
+        //Shuffle or randomize the list, so that we can make sure the puzzle generated
+        //is different every time.
+        Collections.shuffle(numbers);
+        
+        //Loop through every possible number...
+        while(numbers.size() > 0) {
+            
+            //Take our first possibility.
+            int number = numbers.remove(0);
+
+            //Find out if this value is allowed for this cell:
+            if(theBoard[index].isValueAllowed(number)) {
+                //Set the value to our number.
+                theBoard[index].setValue(number);
+                
+                //If we are at the last index (81) than we are finished, if not
+                //test the next index.
+                if(index + 1 < 81) {
+                    //Generate a new board (that so that we can test possibilities)
+                    Cell[] tmpBoard = generateBoard(theBoard, index + 1);
+                    
+                    //If it did not return null, then we have a complete board.
+                    if(tmpBoard != null) {
+                        return tmpBoard;
+                    }
+                } else {
+                    //We've reached the end, return the board.
+                    return theBoard;
+                }
+                
+                //If it did return null, this configuration is invalid
+                //so set our value back to 0 (which means unset), and try the next value.
+                theBoard[index].setValue(0);
+            }
+        }
+        //If we reach this point, than our board is unsolvable.
+        System.out.println("Warning: The board is unsolvable.");
+        return null;
+    }
+    
+    
     public void setValueAt(int row, int column, int value) {
-        Cell square = theBoard[row][column];
+//        Cell square = theBoard[row][column];
+        Cell square = theBoard[row];
         if(square != null) {
             square.setValue(value);
         } else {
           square = new Cell();
           square.setValue(value);
-          theBoard[row][column] = square;
+//          theBoard[row][column] = square;
+          theBoard[row] = square;
         }
     }
     
     public int getValueAt(int row, int column) {
-        Cell square = theBoard[row][column];
+        Cell square = theBoard[row];
         if(square != null)
             return square.getValue();
         else
