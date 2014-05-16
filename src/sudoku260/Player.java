@@ -24,12 +24,12 @@ public class Player {
         playerName = name;
     }
     
-    public void winRate(gamesPlayed, gamesWon){
+    public void winRate(int gamesPlayed, int gamesWon){
             if (gamesWon > gamesPlayed || gamesPlayed < 1){
                 System.out.println ("Number must be positive");
-             return false
+             return;
             }
-        float winRate = (gamesWon / gamesPlayed) * 100
+        float winRate = (gamesWon / gamesPlayed) * 100;
                 if (winRate == 100){
                     System.out.println ("Perfect Record! 100%");
                 }
