@@ -124,20 +124,18 @@ public class Board {
     
     
     public void setValueAt(int row, int column, int value) {
-//        Cell square = theBoard[row][column];
-        Cell square = theBoard[row];
+        Cell square = theBoard[(row * 9 + column)];
         if(square != null) {
             square.setValue(value);
         } else {
           square = new Cell();
           square.setValue(value);
-//          theBoard[row][column] = square;
-          theBoard[row] = square;
+          theBoard[(row * 9 + column)] = square;
         }
     }
     
     public int getValueAt(int row, int column) {
-        Cell square = theBoard[row];
+        Cell square = theBoard[(row * 9 + column)];
         if(square != null)
             return square.getValue();
         else
