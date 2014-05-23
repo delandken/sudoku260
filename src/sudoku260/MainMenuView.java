@@ -12,17 +12,17 @@ import java.util.Scanner;
  *
  * @author Ken
  */
-public class HelpMenuView {
+public class MainMenuView {
     private final static String[][] menuItems = {
-        {"A", "About the game"},
-        {"R", "The rules"},
-        {"S", "Scoring"},
-        {"Q", "Quit Help"}
+        {"N", "New Game"},
+        {"S", "Settings"},
+        {"H", "Help"},
+        {"Q", "Quit"}
     };
     
-    private HelpMenuController helpMenuControl = new HelpMenuController();
+    private MainMenuController mainMenuController = new MainMenuController();
     
-    public HelpMenuView() {}
+    public MainMenuView() {}
     
     public void getInput() {
         String command;
@@ -35,14 +35,14 @@ public class HelpMenuView {
             command = command.trim().toUpperCase();
             
             switch(command) {
-                case "A":
-                    this.helpMenuControl.displayAbout();
-                    break;
-                case "R":
-                    this.helpMenuControl.displayRules();
+                case "N":
+                    mainMenuController.startNewGame();
                     break;
                 case "S":
-                    this.helpMenuControl.displayScore();
+                    mainMenuController.displaySettingsMenu();
+                    break;
+                case "H":
+                    mainMenuController.displayHelpMenu();
                     break;
                 case "Q":
                     break;
@@ -56,7 +56,7 @@ public class HelpMenuView {
     }
     
     public final void display() {
-        System.out.println("\n============= Help Menu ===============");
+        System.out.println("\n============= Main Menu ==============");
         for(String[] command : menuItems) {
             System.out.println("" + command[0] + "\t" + command[1]);
         }

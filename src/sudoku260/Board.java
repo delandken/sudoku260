@@ -32,13 +32,6 @@ public class Board {
     
     public Board() {
         theBoard = generateBoard(theBoard, 0);
-        
-        for(int i = 0; i < theBoard.length; i++) {
-            if(i % 9 == 0) {
-                System.out.println();
-            }
-            System.out.print(theBoard[i].getValue() + " ");
-        }
     }
     
     
@@ -118,7 +111,7 @@ public class Board {
             }
         }
         //If we reach this point, than our board is unsolvable.
-        System.out.println("Warning: The board is unsolvable.");
+//        System.out.println("Warning: The board is unsolvable.");
         return null;
     }
     
@@ -149,4 +142,19 @@ public class Board {
     public String getDifficulty() {
         return difficulty;
     }
+    
+    public String toString() {
+      StringBuilder sb = new StringBuilder();
+      
+      for(int i = 0; i < theBoard.length; i++) {
+          if(i % 9 == 0) {
+                sb.append('\n');
+            }
+            sb.append(theBoard[i].getValue() + " ");
+      }
+      
+ 
+      
+      return sb.toString();
+    };
 }

@@ -42,8 +42,11 @@ public class Sudoku260 {
 //        cells.addCell(aNewSquare);
 //        System.out.println("Is 8 allowable? " + cells.isValueAllowed(8));
 //        
-        HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.getInput();
+//        HelpMenuView helpMenu = new HelpMenuView();
+//        helpMenu.getInput();
+        
+        MainMenuView mainMenu = new MainMenuView();
+        mainMenu.getInput();
     }
     
     public void getName() {

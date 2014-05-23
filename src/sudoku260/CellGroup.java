@@ -41,7 +41,9 @@ public class CellGroup {
     }
     
     public boolean isValueAllowed(int value) {
-        
+        if(value == 0) {
+            return false;
+        }
         //Int value is our first primitive variable type.
         // We used the <, >, and || operators
         if (value > 9 || value < 1) {

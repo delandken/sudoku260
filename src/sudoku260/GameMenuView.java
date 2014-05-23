@@ -12,17 +12,22 @@ import java.util.Scanner;
  *
  * @author Ken
  */
-public class HelpMenuView {
+public class GameMenuView {
     private final static String[][] menuItems = {
-        {"A", "About the game"},
-        {"R", "The rules"},
-        {"S", "Scoring"},
-        {"Q", "Quit Help"}
+        {"S", "Set Square"},
+        {"R", "Restart"},
+        {"H", "Help"},
+        {"O", "Solve"},
+        {"Q", "Quit"}
     };
     
-    private HelpMenuController helpMenuControl = new HelpMenuController();
+    private GameMenuController gameMenuController = new GameMenuController();
+    private Board theBoard;
     
-    public HelpMenuView() {}
+    public GameMenuView(Board theBoard) {
+        this.theBoard = theBoard;
+        gameMenuController.setBoard(theBoard);
+    }
     
     public void getInput() {
         String command;
@@ -35,14 +40,17 @@ public class HelpMenuView {
             command = command.trim().toUpperCase();
             
             switch(command) {
-                case "A":
-                    this.helpMenuControl.displayAbout();
+                case "S":
+                    gameMenuController.setSpace();
                     break;
                 case "R":
-                    this.helpMenuControl.displayRules();
+                    gameMenuController.restartGame();
                     break;
-                case "S":
-                    this.helpMenuControl.displayScore();
+                case "H":
+                    gameMenuController.displayHelpMenu();
+                    break;
+                case "O":
+                    gameMenuController.solve();
                     break;
                 case "Q":
                     break;
@@ -56,7 +64,8 @@ public class HelpMenuView {
     }
     
     public final void display() {
-        System.out.println("\n============= Help Menu ===============");
+        System.out.println(theBoard.toString());
+        System.out.println("\n============= Commands ==============");
         for(String[] command : menuItems) {
             System.out.println("" + command[0] + "\t" + command[1]);
         }
