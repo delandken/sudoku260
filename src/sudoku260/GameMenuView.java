@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class GameMenuView {
     private final static String[][] menuItems = {
         {"S", "Set Square"},
+        {"P", "Possible Values"},
         {"R", "Restart"},
         {"H", "Help"},
         {"O", "Solve"},
@@ -45,6 +46,10 @@ public class GameMenuView {
                     break;
                 case "R":
                     gameMenuController.restartGame();
+                    break;
+                case "P" :
+                    GetPossibleValuesView view = new GetPossibleValuesView(theBoard);
+                    view.getInput();
                     break;
                 case "H":
                     gameMenuController.displayHelpMenu();

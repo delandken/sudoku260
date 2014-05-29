@@ -135,6 +135,10 @@ public class Board {
             return 0;
     }
     
+    public Cell at(int row, int column) {
+        return theBoard[((row - 1) * 9) + (column - 1)];
+    }
+    
     public boolean getValid() {
         return isValid;
     }

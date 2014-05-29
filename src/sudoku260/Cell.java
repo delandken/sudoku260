@@ -40,4 +40,9 @@ public class Cell {
         }
         return true;
     }
+    
+    public int[] getPossibleValues() {
+        //Stub method, fill this in later;
+        return new int[9];
+    }
 }
