@@ -41,8 +41,8 @@ public class GetPossibleValuesView {
                     x = Integer.parseInt(coordinates[0]);
                     y = Integer.parseInt(coordinates[1]);
                     if(x > 0 && x < 10 && y > 0 && y < 10) {
-                        int[] possibleValues = board.at(x, y).getPossibleValues();
-                        for(int value: possibleValues) {
+                        Integer[] possibleValues = board.at(x, y).getPossibleValues();
+                        for(Integer value: possibleValues) {
                             System.out.print(" " + value + " ");
                         }
                         break;
