@@ -45,17 +45,17 @@ public class Sudoku260 {
 //        HelpMenuView helpMenu = new HelpMenuView();
 //        helpMenu.getInput();
         
-//        MainMenuView mainMenu = new MainMenuView();
-//        mainMenu.getInput();
+        MainMenuView mainMenu = new MainMenuView();
+        mainMenu.getInput();
         
-        HighScoreListView highscores = new HighScoreListView();
-        highscores.addHighScore(10);
-        highscores.addHighScore(5);
-        highscores.addHighScore(30);
-        highscores.addHighScore(20);
-        highscores.addHighScore(50);
-        highscores.addHighScore(105);
-        highscores.addHighScore(200);
+//        HighScoreListView highscores = new HighScoreListView();
+//        highscores.addHighScore(10);
+//        highscores.addHighScore(5);
+//        highscores.addHighScore(30);
+//        highscores.addHighScore(20);
+//        highscores.addHighScore(50);
+//        highscores.addHighScore(105);
+//        highscores.addHighScore(200);
     }
     
     public void getName() {

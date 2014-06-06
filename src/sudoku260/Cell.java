@@ -42,13 +42,15 @@ public class Cell {
         return true;
     }
     
-    public Integer[] getPossibleValues() {
+    public ArrayList<Integer> getPossibleValues() {
         //Stub method, fill this in later;
         ArrayList<Integer> possibleValues = new ArrayList<Integer>();
+        for(int i = 1; i < 10; i++) 
+            possibleValues.add(i);
         for(CellGroup group : groups) {
             possibleValues.retainAll(group.getPossibleValues());
         }
         
-        return (Integer[])possibleValues.toArray();
+        return possibleValues;
     }
 }
