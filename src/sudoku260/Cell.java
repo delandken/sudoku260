@@ -7,6 +7,7 @@
 package sudoku260;
 
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 /**
  * This class represents a cell on the sudoku board. The cell contains a value.
@@ -41,8 +42,13 @@ public class Cell {
         return true;
     }
     
-    public int[] getPossibleValues() {
+    public Integer[] getPossibleValues() {
         //Stub method, fill this in later;
-        return new int[9];
+        ArrayList<Integer> possibleValues = new ArrayList<Integer>();
+        for(CellGroup group : groups) {
+            possibleValues.retainAll(group.getPossibleValues());
+        }
+        
+        return (Integer[])possibleValues.toArray();
     }
 }

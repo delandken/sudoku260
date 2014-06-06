@@ -35,7 +35,7 @@ public class CellGroup {
     public void addCell(Cell cell) {
         cells.add(cell);
         //If this cell has a value, then mark that it is no longer an allowable value:
-        if(cell.getValue() != 0) {
+        if(cell.getValue() > 0 && cell.getValue() < 10) {
             allowableValues[cell.getValue() - 1] = false;
         }
     }
@@ -71,5 +71,27 @@ public class CellGroup {
             } 
         } 
       return isValid;
+    }
+    
+    public ArrayList<Integer> getPossibleValues() {
+        ArrayList<Integer> possibleValues = new ArrayList<Integer>();
+        if(cells == null) {
+            return possibleValues;
+        }
+        
+        boolean[] values = new boolean[9];
+        for(Cell cell: cells) {
+            if(cell.getValue() < 10 && cell.getValue() > 0){
+                values[cell.getValue() - 1] = true;
+            }
+        }
+        
+        for(int i = 0; i < values.length; i++) {
+            if(values[i] == false) {
+                possibleValues.add(i + 1);
+            }
+        }
+        
+        return possibleValues;
     }
 }
