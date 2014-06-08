@@ -53,7 +53,7 @@ public class HighScoreListView {
         i++;
         int highScoresTotal += highScores[i];
         highScoresTotal / highScores.length;
-        System.out.println("The average high score is" + GetAverage() + ".");
+        System.out.println("The average high score is:" + GetAverage() + ".");
 }
     }
     
