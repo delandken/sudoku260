@@ -48,5 +48,13 @@ public class HighScoreListView {
             }
         }
     }
+    public double GetAverage() {
+        for(int i = 0; i < highScores.length; i++){
+        i++;
+        int highScoresTotal += highScores[i];
+        highScoresTotal / highScores.length;
+        System.out.println("The average high score is" + GetAverage() + ".");
+}
+    }
     
 }
