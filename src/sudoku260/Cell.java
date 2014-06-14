@@ -19,6 +19,8 @@ import java.util.TreeSet;
 public class Cell {
     private int value = 0;
     private ArrayList<CellGroup> groups = new ArrayList<CellGroup>();
+    private boolean fixed = true; //Assume it's fixed unless told otherwise.
+    
     
     public int getValue() {
         return value;
@@ -26,6 +28,14 @@ public class Cell {
     
     public void setValue(int value) {
         this.value = value;
+    }
+    
+    public void setFixed(boolean fixed) {
+        this.fixed = fixed;
+    }
+    
+    public boolean isFixed() {
+        return fixed;
     }
     
     public void assignToGroup(CellGroup group) {
@@ -42,13 +52,15 @@ public class Cell {
         return true;
     }
     
-    public Integer[] getPossibleValues() {
+    public ArrayList<Integer> getPossibleValues() {
         //Stub method, fill this in later;
         ArrayList<Integer> possibleValues = new ArrayList<Integer>();
+        for(int i = 1; i < 10; i++) 
+            possibleValues.add(i);
         for(CellGroup group : groups) {
             possibleValues.retainAll(group.getPossibleValues());
         }
         
-        return (Integer[])possibleValues.toArray();
+        return possibleValues;
     }
 }

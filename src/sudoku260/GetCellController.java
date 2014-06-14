@@ -11,16 +11,16 @@ import java.util.Scanner;
 
 /**
  *
- * @author Ken
+ * @author vdelake
  */
-public class GetPossibleValuesView {
-    private Board board;
+public class GetCellController {
+    private Board theBoard;
     
-    public GetPossibleValuesView(Board board) {
-        this.board = board;
+    public GetCellController(Board theBoard) {
+        this.theBoard = theBoard;
     }
     
-    public void getInput() {
+    public Cell promptForCell() {
         Scanner in = new Scanner(System.in);
         int x, y;
         do {
@@ -42,11 +42,7 @@ public class GetPossibleValuesView {
                     x = Integer.parseInt(coordinates[0]);
                     y = Integer.parseInt(coordinates[1]);
                     if(x > 0 && x < 10 && y > 0 && y < 10) {
-                        ArrayList<Integer> possibleValues = board.at(x, y).getPossibleValues();
-                        for(Integer value: possibleValues) {
-                            System.out.print(" " + value + " ");
-                        }
-                        break;
+                        return theBoard.at(x, y);
                     }
                 } catch (NumberFormatException ex) {
                 }
@@ -54,5 +50,7 @@ public class GetPossibleValuesView {
             
             System.out.println("Invalid coordinates.");
         } while(true);
+        
+        return null;
     }
 }

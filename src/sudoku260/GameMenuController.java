@@ -13,16 +13,29 @@ package sudoku260;
 public class GameMenuController {
     private Board theBoard;
     
+    private GetCellController getCellController;
+    
     public GameMenuController() {}
     
     public void setBoard(Board theBoard) {
         this.theBoard = theBoard;
+        this.getCellController = new GetCellController(theBoard);
     }
     
     public void setSpace() {
          System.out.println();
         System.out.println(helpBorder());
-        System.out.println("Coming Soon!");
+        
+        Cell theCell = getCellController.promptForCell();
+        
+        if(theCell != null && !theCell.isFixed()) {
+            //Prompt for a value...
+            int value = GetValueController.promptForValue();
+            theCell.setValue(value);
+        } else {
+            System.out.println("Unable to set cell.");
+        }
+        
        System.out.print(helpBorder());
     }
     

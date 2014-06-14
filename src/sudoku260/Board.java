@@ -30,8 +30,11 @@ public class Board {
     
     private String difficulty = "Medium";
     
+    private int possibleSolutions;
+    
     public Board() {
         theBoard = generateBoard(theBoard, 0);
+        drillBoard();
     }
     
     
@@ -52,6 +55,12 @@ public class Board {
         int row = (int)(index / 9);
         int column = index % 9;
         
+        int subSquareRow = row / 3;
+        int subSquareColumn = column / 3;
+        
+        int subSquareIndex = (subSquareRow * 3) + subSquareColumn;
+        
+        
         //We need to make a new cell for this space:
         theBoard[index] = new Cell();
         
@@ -68,6 +77,13 @@ public class Board {
         //Assign the cell to this column.
         theBoard[index].assignToGroup(columns[column]);
         
+        //Make sure there is a sub square:
+        if(subsquares[subSquareIndex] == null) {
+            subsquares[subSquareIndex] = new CellGroup();
+        }
+        
+        //Assign the cell to this column:
+        theBoard[index].assignToGroup(subsquares[subSquareIndex]);
         
         //Generate the list of all possible values:
         List<Integer> numbers = new ArrayList<Integer>();
@@ -115,6 +131,56 @@ public class Board {
         return null;
     }
     
+    public void drillBoard() {
+        //Start with a list of possible position:
+        List<Integer> positions = new ArrayList<Integer>();
+        for(int i = 0; i < 81; i++) {
+            positions.add(i);
+        }
+        Collections.shuffle(positions);
+        
+        while(positions.size() > 0) {
+            int position = positions.remove(0);
+            int temp = theBoard[position].getValue();
+            theBoard[position].setValue(0);
+            theBoard[position].setFixed(false);
+            possibleSolutions = 0;
+            if(!isValid(0)) {
+                theBoard[position].setValue(temp);
+                theBoard[position].setFixed(true);
+            }
+        }   
+    }
+    
+    private boolean isValid(int index) {
+        if(theBoard == null || index < 0) {
+            return false;
+        }
+        if(index > 80) {
+            return ++possibleSolutions == 1;
+        }
+        
+        //Find out if the current cell has a zero value:
+        if(theBoard[index].getValue() == 0) {
+            ArrayList<Integer> possibleValues = theBoard[index].getPossibleValues();
+            for(Integer value : possibleValues) {
+                theBoard[index].setValue(value);
+                
+                if(!isValid(index + 1)) {
+                    theBoard[index].setValue(0);
+                    return false;
+                }
+                theBoard[index].setValue(0);
+            }
+            
+        } else if(!isValid(index + 1)) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    
     
     public void setValueAt(int row, int column, int value) {
         Cell square = theBoard[(row * 9 + column)];
@@ -136,7 +202,7 @@ public class Board {
     }
     
     public Cell at(int row, int column) {
-        return theBoard[((row - 1) * 9) + (column - 1)];
+        return theBoard[((column - 1) * 9) + (row - 1)];
     }
     
     public boolean getValid() {
@@ -151,13 +217,21 @@ public class Board {
       StringBuilder sb = new StringBuilder();
       
       for(int i = 0; i < theBoard.length; i++) {
-          if(i % 9 == 0) {
+            if(i % 9 == 0) {
+                if(i != 0)
+                    sb.append('|');
                 sb.append('\n');
+                
+                if((i/9) % 3 == 0) {
+                    sb.append("======================\n");
+                }
             }
+            if(i % 3 == 0)
+              sb.append("|");
+            
             sb.append(theBoard[i].getValue() + " ");
       }
-      
- 
+      sb.append("|\n======================\n");
       
       return sb.toString();
     };
