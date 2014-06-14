@@ -143,10 +143,11 @@ public class Board {
             int position = positions.remove(0);
             int temp = theBoard[position].getValue();
             theBoard[position].setValue(0);
-            
+            theBoard[position].setFixed(false);
             possibleSolutions = 0;
             if(!isValid(0)) {
                 theBoard[position].setValue(temp);
+                theBoard[position].setFixed(true);
             }
         }   
     }
@@ -201,7 +202,7 @@ public class Board {
     }
     
     public Cell at(int row, int column) {
-        return theBoard[((row - 1) * 9) + (column - 1)];
+        return theBoard[((column - 1) * 9) + (row - 1)];
     }
     
     public boolean getValid() {
@@ -216,13 +217,21 @@ public class Board {
       StringBuilder sb = new StringBuilder();
       
       for(int i = 0; i < theBoard.length; i++) {
-          if(i % 9 == 0) {
+            if(i % 9 == 0) {
+                if(i != 0)
+                    sb.append('|');
                 sb.append('\n');
+                
+                if((i/9) % 3 == 0) {
+                    sb.append("======================\n");
+                }
             }
+            if(i % 3 == 0)
+              sb.append("|");
+            
             sb.append(theBoard[i].getValue() + " ");
       }
-      
- 
+      sb.append("|\n======================\n");
       
       return sb.toString();
     };
