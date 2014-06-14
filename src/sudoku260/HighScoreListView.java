@@ -49,12 +49,13 @@ public class HighScoreListView {
         }
     }
     public double GetAverage() {
+        int highScoresTotal = 0;
         for(int i = 0; i < highScores.length; i++){
-        i++;
-        int highScoresTotal += highScores[i];
-        highScoresTotal / highScores.length;
-        System.out.println("The average high score is" + GetAverage() + ".");
-}
-    }
+        highScoresTotal += highScores[i];
+        }
+        int average = highScoresTotal / highScores.length;
+        System.out.println("The average high score is" + average + ".");
+    return average;} 
+    
     
 }
