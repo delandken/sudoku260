@@ -18,8 +18,10 @@ import java.util.TreeSet;
  */
 public class Cell {
     private int value = 0;
-    private ArrayList<CellGroup> groups = new ArrayList<CellGroup>();
     private boolean fixed = true; //Assume it's fixed unless told otherwise.
+    
+    //This value should NOT be settable by the outside world.
+    private ArrayList<CellGroup> groups = new ArrayList<CellGroup>();
     
     
     public int getValue() {
@@ -41,6 +43,10 @@ public class Cell {
     public void assignToGroup(CellGroup group) {
         groups.add(group);
         group.addCell(this);
+    }
+    
+    public ArrayList<CellGroup> getGroups() {
+        return groups;
     }
     
     public boolean isValueAllowed(int value) {

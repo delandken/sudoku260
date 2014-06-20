@@ -6,6 +6,8 @@
 
 package sudoku260;
 
+import java.util.Scanner;
+
 /**
  *
  * @author AshleyFaust
@@ -30,6 +32,39 @@ public class SettingsMenuController {
     
     private String menuBorder() { 
         return "=========================";
+    }
+    
+    /**
+    *
+    * @author AshleyFaust
+    */
+   private class GetDifficulty {
+
+       public void getInput() {
+           Scanner in = new Scanner(System.in);
+           do {
+               //display options to user
+               System.out.println("Enter easy, medium or hard.");
+               String response = in.nextLine();
+
+               if(response.equals("q")) {
+                   break;
+               }
+
+               if(response == "easy" ) {
+                   System.out.println("You have chosen easy. Good luck!");
+               }
+
+               if (response == "medium") {
+                   System.out.println("You have chosen medium. Good luck!");
+               }
+
+               if (response == "hard") {
+                   System.out.println("You have chosen hard. Good luck!");
+               }
+               else System.out.println("Invalid coordinates.");
+           } while(true);
+       }
     }
 }
 
