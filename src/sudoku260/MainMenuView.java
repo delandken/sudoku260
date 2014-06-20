@@ -62,4 +62,85 @@ public class MainMenuView {
         }
         System.out.println("\n==================================\n");
     }
+
+/**
+ *
+ * @author Ken
+ */
+public class MainMenuController {
+    public void startNewGame() {
+       GameMenuView gameMenu = new GameMenuView(new Board());
+       gameMenu.getInput();
+    }
+    
+    public void displaySettingsMenu() {
+         System.out.println();
+        System.out.println(helpBorder());
+        System.out.println("Coming Soon!");
+       System.out.print(helpBorder());
+    }
+    
+    public void displayHelpMenu() {
+        HelpMenuView helpMenu = new HelpMenuView();
+        helpMenu.getInput();
+    }
+    
+    private String helpBorder() { 
+        return "=========================";
+    }
+}
+
+/**
+ *we need to make sure we have the view high score and high score average options on the main menu 
+ * @author vdelake
+ */
+public class HighScoreListView {
+    private int[] highScores = new int[10];
+    private int currentIndex = 0;
+    
+    public void addHighScore(int highScore) {
+        if(currentIndex < 10) {
+            highScores[currentIndex++] = highScore;
+        } else {
+            highScores[currentIndex] = highScore;
+        }
+        
+        sortScores();
+        displayHighScores();
+    }
+    
+    public void sortScores() {
+        int j; //Number of items sorted so far.
+        int key; //current item being sorted.
+        int i; //Index for looper.
+        
+        //Loop through every item in our list:
+        for(j = 1; j < highScores.length; j++) {
+            key = highScores[j]; //Get the current item
+            //Loop through our items we've already sorted, and make space for this new key.
+            for(i = j - 1; (i >= 0) && (highScores[i] < key); i--) {
+                highScores[i + 1] = highScores[i];
+            }
+            highScores[i + 1] = key;
+        }
+    }
+    
+    public void displayHighScores() {
+        for(int i = 0; i < highScores.length; i++) {
+            if(highScores[i] != 0) {
+                System.out.println("#" + (i + 1) + ": " + highScores[i]);
+            }
+        }
+    }
+    public double GetAverage() {
+        int highScoresTotal = 0;
+        for(int i = 0; i < highScores.length; i++){
+        highScoresTotal += highScores[i];
+        }
+        int average = highScoresTotal / highScores.length;
+        System.out.println("The average high score is" + average + ".");
+    return average;} 
+    
+    
+}
 }
