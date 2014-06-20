@@ -26,7 +26,7 @@ public class MainMenuView {
     
     public void getInput() {
         String command;
-        Scanner inFile = new Scanner(System.in);
+        Scanner inFile = Sudoku260.input;
         
         do {
             this.display();

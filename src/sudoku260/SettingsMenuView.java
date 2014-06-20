@@ -25,7 +25,7 @@ public class SettingsMenuView {
     
     public void getInput() {
         String command;
-        Scanner inFile = new Scanner(System.in);
+        Scanner inFile = Sudoku260.input;
         
         do {
             this.display();
@@ -92,7 +92,7 @@ public class SettingsMenuView {
    private class GetDifficulty {
 
        public void getInput() {
-           Scanner in = new Scanner(System.in);
+           Scanner in = Sudoku260.input;
            do {
                //display options to user
                System.out.println("Enter easy, medium or hard.");

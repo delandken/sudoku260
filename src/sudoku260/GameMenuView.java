@@ -32,7 +32,7 @@ public class GameMenuView {
     
     public void getInput() {
         String command;
-        Scanner inFile = new Scanner(System.in);
+        Scanner inFile = Sudoku260.input;
         
         do {
             this.display();
@@ -94,14 +94,11 @@ public class GameMenuView {
              System.out.println();
             System.out.println(helpBorder());
 
-            Cell theCell = getCellController.promptForCell();
+            CoordinateWrapper coordinates = getCellController.promptForCoordinates();
 
-            if(theCell != null && !theCell.isFixed()) {
-                //Prompt for a value...
+            if(theBoard.canSetCell(coordinates)) {
                 int value = GetValueController.promptForValue();
-                theCell.setValue(value);
-            } else {
-                System.out.println("Unable to set cell.");
+                theBoard.setValueAt(coordinates, value);
             }
 
            System.out.print(helpBorder());

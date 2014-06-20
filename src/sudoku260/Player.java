@@ -16,7 +16,7 @@ public class Player {
     private String playerName;
             
     public void getPlayerName(){
-        Scanner input = new Scanner(System.in);
+        Scanner input = Sudoku260.input;
         System.out.println("Enter your name: ");
         this.playerName = input.next();
     }

@@ -186,17 +186,20 @@ public class Board {
         return true;
     }
     
+    public boolean canSetCell(CoordinateWrapper coordinates) {
+        return theBoard[((coordinates.getX() - 1) * 9 + (coordinates.getY() - 1))].isFixed();
+    }
     
     //This method is a public facing API, it allows a system to specify a row, column, and value
     //And it will update that value.
-    public void setValueAt(int row, int column, int value) {
-        Cell square = theBoard[(row * 9 + column)];
+    public void setValueAt(CoordinateWrapper coordinates, int value) {
+        Cell square = theBoard[((coordinates.getX() - 1) * 9 + (coordinates.getY() - 1))];
         if(square != null) {
             square.setValue(value);
         } else {
           square = new Cell();
           square.setValue(value);
-          theBoard[(row * 9 + column)] = square;
+          theBoard[(coordinates.getX() * 9 + coordinates.getY())] = square;
         }
     }
     
@@ -209,9 +212,9 @@ public class Board {
             return 0;
     }
     
-    //This method needs to be refactored :(
-    public Cell at(int row, int column) {
-        return theBoard[((column - 1) * 9) + (row - 1)];
+    
+    public ArrayList<Integer> getPossibleValuesAt(CoordinateWrapper coordinateWrapper) {
+        return theBoard[(coordinateWrapper.getX() - 1) * 9 + (coordinateWrapper.getY() - 1)].getPossibleValues();
     }
     
     //Getter / setter methods.

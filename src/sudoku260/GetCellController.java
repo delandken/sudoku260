@@ -20,8 +20,8 @@ public class GetCellController {
         this.theBoard = theBoard;
     }
     
-    public Cell promptForCell() {
-        Scanner in = new Scanner(System.in);
+    public CoordinateWrapper promptForCoordinates() {
+        Scanner in = Sudoku260.input;
         int x, y;
         do {
             //Prompt the user for the coordinates:
@@ -42,7 +42,7 @@ public class GetCellController {
                     x = Integer.parseInt(coordinates[0]);
                     y = Integer.parseInt(coordinates[1]);
                     if(x > 0 && x < 10 && y > 0 && y < 10) {
-                        return theBoard.at(x, y);
+                        return new CoordinateWrapper(x, y);
                     }
                 } catch (NumberFormatException ex) {
                 }

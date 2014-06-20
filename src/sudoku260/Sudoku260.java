@@ -18,9 +18,11 @@ public class Sudoku260 {
      * @param args the command line arguments
      */
     
-    private String playerName;
-    private String instructions = "Welcome to Sudoku! This game is really fun! You're gonna like it.";
-    private Board theBoard;
+    private static String playerName;
+    private static String instructions = "Welcome to Sudoku! This game is really fun! You're gonna like it.";
+    private static Board theBoard;
+    
+    public static Scanner input = new Scanner(System.in);
     
     public static void main(String[] args) {
 //        Sudoku260 theGame = new Sudoku260();

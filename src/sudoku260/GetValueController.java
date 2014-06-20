@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class GetValueController {
     public static int promptForValue() {
-         Scanner in = new Scanner(System.in);
+         Scanner in = Sudoku260.input;
          int value;
          do {
              System.out.println("Enter a Value (1 - 9):");
