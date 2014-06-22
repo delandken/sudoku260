@@ -6,6 +6,7 @@
 
 package sudoku260;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -48,8 +49,7 @@ public class GameMenuView {
                     gameMenuController.restartGame();
                     break;
                 case "P" :
-                    GetPossibleValuesView view = new GetPossibleValuesView(theBoard);
-                    view.getInput();
+                    gameMenuController.displayPossibleValues();
                     break;
                 case "H":
                     gameMenuController.displayHelpMenu();
@@ -104,6 +104,16 @@ public class GameMenuView {
            System.out.print(helpBorder());
         }
 
+        public void displayPossibleValues() {
+            CoordinateWrapper coordinates = getCellController.promptForCoordinates();
+            ArrayList<Integer> possibleValues = theBoard.getPossibleValuesAt(coordinates);
+            for(Integer val : possibleValues) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+            System.out.println(helpBorder());
+        }
+        
         public void restartGame() {
              System.out.println();
             System.out.println(helpBorder());

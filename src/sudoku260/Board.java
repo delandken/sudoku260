@@ -6,6 +6,7 @@
 
 package sudoku260;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,11 +16,11 @@ import java.util.List;
  * which represents the grid being used for the game. It also knows if it is valid/solved,
  * and the difficulty of the board.
  * 
- * @TODO: Randomly generate the board and implement the difficulty settings.
+ * @TODO Actually do something with the difficulty.
  * 
  * @author Ken
  */
-public class Board {
+public class Board implements Serializable {
     //This attribute represents the cells that make up our grid.
     private Cell[] theBoard = new Cell[81];
     //This attribute represents the rows in our grid.
@@ -30,7 +31,7 @@ public class Board {
     private CellGroup[] subsquares = new CellGroup[9];
     
     //This attribute represents (and will represent) the difficulty of this grid.
-    private String difficulty = "Medium";
+    private Difficulty difficulty = Difficulty.MEDIUM;
     
     //This method is used by the board generation process to count how many solutions our board has.
     private int possibleSolutions;
@@ -218,7 +219,7 @@ public class Board {
     }
     
     //Getter / setter methods.
-    public String getDifficulty() {
+    public Difficulty getDifficulty() {
         return difficulty;
     }
     
@@ -402,5 +403,11 @@ public class Board {
            return possibleValues;
        }
    }
+   
+   public enum Difficulty {
+       EASY,
+       MEDIUM,
+       HARD
+   };
 
 }
