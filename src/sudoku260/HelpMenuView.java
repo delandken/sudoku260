@@ -16,9 +16,54 @@ import java.util.Scanner;
 public class HelpMenuView extends AbstractMenu {
     private static HashMap<String, MenuItemCommand> menuItems = new HashMap<String, MenuItemCommand>();
     static {
+                menuItems.put("A", new AboutGameHandler());
+                menuItems.put("R", new RulesHandler());
+                menuItems.put("S", new ScoringHandler());
+    }
+    
+        private static class AboutGameHandler implements MenuItemCommand {
+
+        @Override
+        public String getName() {
+            return "About Game";
+        }
+
+        @Override
+        public void handleIt() {
+            GameMenuView gameMenu = displayAbout();
+            gameMenu.getInput();
+        }
         
     }
     
+        private static class RulesHandler implements MenuItemCommand {
+
+        @Override
+        public String getName() {
+            return "Rules";
+        }
+
+        @Override
+        public void handleIt() {
+            GameMenuView gameMenu = displayRules();
+            gameMenu.getInput();
+        }
+        
+    }
+       private static class ScoringHandler implements MenuItemCommand {
+
+        @Override
+        public String getName() {
+            return "Scoring";
+        }
+
+        @Override
+        public void handleIt() {
+            GameMenuView gameMenu = displayScoring();
+            gameMenu.getInput();
+        }
+        
+    }
 //    private final static String[][] menuItems = {
 //        {"A", "About the game"},
 //        {"R", "The rules"},
