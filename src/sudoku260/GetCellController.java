@@ -14,12 +14,6 @@ import java.util.Scanner;
  * @author vdelake
  */
 public class GetCellController {
-    private Board theBoard;
-    
-    public GetCellController(Board theBoard) {
-        this.theBoard = theBoard;
-    }
-    
     public CoordinateWrapper promptForCoordinates() {
         Scanner in = Sudoku260.input;
         int x, y;

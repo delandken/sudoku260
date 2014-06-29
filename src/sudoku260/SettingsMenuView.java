@@ -12,91 +12,43 @@ import java.util.Scanner;
  *
  * @author AshleyFaust
  */
-public class SettingsMenuView {
-    private final static String[][] menuItems = {
-        {"N", "Change Player Name"},
-        {"D", "Change Difficulty"},
-        {"Q", "Quit Menu"}
-    };
+public class SettingsMenuView extends AbstractMenu {
+    private static String playerName = "Player 1";
     
-    private SettingsMenuController SettingsMenuControl = new SettingsMenuController();
-    
-    public SettingsMenuView() {}
-    
-    public void getInput() {
-        String command;
-        Scanner inFile = Sudoku260.input;
-        
-        do {
-            this.display();
-            
-            command = inFile.nextLine();
-            command = command.trim().toUpperCase();
-            
-            switch(command) {
-                case "N":
-                    this.SettingsMenuControl.displayNameChange();
-                    break;
-                case "D":
-                    this.SettingsMenuControl.displayChangeDifficulty();
-                    break;
-                case "Q":
-                    break;
-                default: 
-                    System.out.println("Invalid command. Please enter a valid command!");
-                    continue;
-            }
-        } while (!command.equals("Q"));
-        
-        return;
+    public SettingsMenuView() {
+        menuItems.put("N", new ChangePlayerHandler());
+        menuItems.put("D", new ChangeDifficultyHandler());
     }
-    
-    public final void display() {
-        System.out.println("\n==================================");
-        for(String[] command : menuItems) {
-            System.out.println("" + command[0] + "\t" + command[1]);
+ 
+    private static final class ChangePlayerHandler implements MenuItemCommand {
+
+        @Override
+        public String getName() {
+            return "Change Name";
         }
-        System.out.println("\n==================================\n");
-    }
 
-/**
- *
- * @author AshleyFaust
- */
-    public class SettingsMenuController {
-    public void displayNameChange() {
-        System.out.println();
-        System.out.println(menuBorder());
-        System.out.println("To change your player name, please click restart on main menu.");
-       System.out.print(menuBorder());
+        @Override
+        public void handleIt() {
+            //Prompt the user for our input:
+            System.out.print("Enter New Player Name: ");
+            playerName = Sudoku260.input.nextLine();
+        }
+        
     }
     
-    public void displayChangeDifficulty() {
-         System.out.println();
-        System.out.println(menuBorder());
-        System.out.println("Changing difficulty changes the number of squares in the" +
-                "matrix. This will require a restart of the game from the main menu." +
-                "Then select your preferred difficulty level.");
-       System.out.print(menuBorder());
-    }
-    
-    
-    private String menuBorder() { 
-        return "=========================";
-    }
-    
-    /**
-    *
-    * @author AshleyFaust
-    */
-   private class GetDifficulty {
+    private static final class ChangeDifficultyHandler implements MenuItemCommand {
 
-       public void getInput() {
-           Scanner in = Sudoku260.input;
-           do {
+        @Override
+        public String getName() {
+            return "Change Difficulty";
+        }
+
+        @Override
+        public void handleIt() {
+            do {
                //display options to user
                System.out.println("Enter easy, medium or hard.");
-               String response = in.nextLine();
+               String response = Sudoku260.input.nextLine();
 
                if(response.equals("q")) {
                    break;
@@ -104,19 +56,23 @@ public class SettingsMenuView {
 
                if(response == "easy" ) {
                    System.out.println("You have chosen easy. Good luck!");
+                   break;
                }
 
                if (response == "medium") {
                    System.out.println("You have chosen medium. Good luck!");
+                   break;
                }
 
                if (response == "hard") {
-                   System.out.println("You have chosen hard. Good luck!");
+                   System.out.println("You have chosen hard. Good luck! You'll need it!");
+                   break;
                }
-               else System.out.println("Invalid coordinates.");
+               else System.out.println("Invalid option.");
            } while(true);
-       }
+        }
+        
     }
-}
+    
 }
 

@@ -14,8 +14,9 @@ import java.util.Scanner;
  */
 public abstract class AbstractMenu {
 //    protected static String[][] menuItems;
-    protected static HashMap<String, MenuItemCommand> menuItems = new HashMap<String, MenuItemCommand>();
+    protected HashMap<String, MenuItemCommand> menuItems = new HashMap<String, MenuItemCommand>();
    
+    public AbstractMenu(){};
  
     public void getInput() {
         String command;
@@ -37,7 +38,7 @@ public abstract class AbstractMenu {
         return;
     }
     
-    public final void display() {
+    public void display() {
         System.out.println("\n~~~~~~~~~~~~ Main Menu ==============");
         for(String command : menuItems.keySet()) {
             System.out.println("" + command + "\t" + menuItems.get(command).getName());

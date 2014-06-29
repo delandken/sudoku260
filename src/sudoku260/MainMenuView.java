@@ -13,12 +13,15 @@ import java.util.Scanner;
  * @author Ken
  */
 public class MainMenuView extends AbstractMenu {
-    static {
+    
+    
+    public MainMenuView() {
         menuItems.put("N", new NewGameHandler());
         menuItems.put("S", new SettingsHandler());
         menuItems.put("H", new HelpMenuHandler());
     }
-    private static class NewGameHandler implements MenuItemCommand {
+    
+    private static final class NewGameHandler implements MenuItemCommand {
 
         @Override
         public String getName() {
@@ -27,13 +30,13 @@ public class MainMenuView extends AbstractMenu {
 
         @Override
         public void handleIt() {
-            GameMenuView gameMenu = new GameMenuView(new Board());
+            GameMenuView gameMenu = new GameMenuView();
             gameMenu.getInput();
         }
         
     }
     
-    private static class SettingsHandler implements MenuItemCommand {
+    private static final class SettingsHandler implements MenuItemCommand {
 
         @Override
         public String getName() {
@@ -48,7 +51,7 @@ public class MainMenuView extends AbstractMenu {
         
     }
     
-    private static class HelpMenuHandler implements MenuItemCommand {
+    private static final class HelpMenuHandler implements MenuItemCommand {
 
         @Override
         public String getName() {

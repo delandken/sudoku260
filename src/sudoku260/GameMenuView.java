@@ -13,129 +13,104 @@ import java.util.Scanner;
  *
  * @author Ken
  */
-public class GameMenuView {
-    private final static String[][] menuItems = {
-        {"S", "Set Square"},
-        {"P", "Possible Values"},
-        {"R", "Restart"},
-        {"H", "Help"},
-        {"O", "Solve"},
-        {"Q", "Quit"}
-    };
-    
-    private GameMenuController gameMenuController = new GameMenuController();
+public class GameMenuView extends AbstractMenu {
     private Board theBoard;
     
-    public GameMenuView(Board theBoard) {
-        this.theBoard = theBoard;
-        gameMenuController.setBoard(theBoard);
+    private static final GetCellController getCellController = new GetCellController();
+    
+    public GameMenuView() {
+       theBoard = new Board();
+       
+      menuItems.put("S", new SetSquareHandler());
+      menuItems.put("P", new PossibleValuesHandler());
+      menuItems.put("O", new SolveHandler());
+      menuItems.put("R", new RestartHandler());
+      menuItems.put("H", new HelpHandler());
     }
     
-    public void getInput() {
-        String command;
-        Scanner inFile = Sudoku260.input;
-        
-        do {
-            this.display();
-            
-            command = inFile.nextLine();
-            command = command.trim().toUpperCase();
-            
-            switch(command) {
-                case "S":
-                    gameMenuController.setSpace();
-                    break;
-                case "R":
-                    gameMenuController.restartGame();
-                    break;
-                case "P" :
-                    gameMenuController.displayPossibleValues();
-                    break;
-                case "H":
-                    gameMenuController.displayHelpMenu();
-                    break;
-                case "O":
-                    gameMenuController.solve();
-                    break;
-                case "Q":
-                    break;
-                default: 
-                    System.out.println("Invalid command. Please enter a valid command!");
-                    continue;
-            }
-        } while (!command.equals("Q"));
-        
-        return;
+    public void display() {
+        System.err.println(theBoard.toString());
+        System.out.println();
+        super.display();
     }
     
-    public final void display() {
-        System.out.println(theBoard.toString());
-        System.out.println("\n============= Commands ==============");
-        for(String[] command : menuItems) {
-            System.out.println("" + command[0] + "\t" + command[1]);
-        }
-        System.out.println("\n==================================\n");
-    }
-    
-    
-    private class GameMenuController {
-        private Board theBoard;
+    private final class SetSquareHandler implements MenuItemCommand{
 
-        private GetCellController getCellController;
-
-        public GameMenuController() {}
-
-        public void setBoard(Board theBoard) {
-            this.theBoard = theBoard;
-            this.getCellController = new GetCellController(theBoard);
+        @Override
+        public String getName() {
+           return "Set Square";
         }
 
-        public void setSpace() {
-             System.out.println();
-            System.out.println(helpBorder());
-
-            CoordinateWrapper coordinates = getCellController.promptForCoordinates();
+        @Override
+        public void handleIt() {
+           CoordinateWrapper coordinates = getCellController.promptForCoordinates();
 
             if(theBoard.canSetCell(coordinates)) {
                 int value = GetValueController.promptForValue();
                 theBoard.setValueAt(coordinates, value);
             }
+        }
+    
+    }
+    
+    private final class PossibleValuesHandler implements MenuItemCommand {
 
-           System.out.print(helpBorder());
+        @Override
+        public String getName() {
+            return "Possible Values";
         }
 
-        public void displayPossibleValues() {
+        @Override
+        public void handleIt() {
             CoordinateWrapper coordinates = getCellController.promptForCoordinates();
             ArrayList<Integer> possibleValues = theBoard.getPossibleValuesAt(coordinates);
             for(Integer val : possibleValues) {
                 System.out.print(val + " ");
             }
-            System.out.println();
-            System.out.println(helpBorder());
         }
         
-        public void restartGame() {
-             System.out.println();
-            System.out.println(helpBorder());
-            System.out.println("Coming Soon!");
-           System.out.print(helpBorder()); 
-        }
-
-        public void solve() {
-              System.out.println();
-            System.out.println(helpBorder());
-            System.out.println("Coming Soon!");
-           System.out.print(helpBorder());
-        }
-
-        public void displayHelpMenu() {
-            HelpMenuView helpMenu = new HelpMenuView();
-            helpMenu.getInput();
-        }
-
-        private String helpBorder() { 
-            return "=========================";
-        }
     }
+    
+    private final class RestartHandler implements MenuItemCommand {
 
+        @Override
+        public String getName() {
+            return "Restart Handler";
+        }
+
+        @Override
+        public void handleIt() {
+            theBoard = new Board();
+        }
+        
+    }
+    
+    private static final class HelpHandler implements MenuItemCommand {
+
+        @Override
+        public String getName() {
+            return "Help";
+        }
+
+        @Override
+        public void handleIt() {
+            HelpMenuView menu = new HelpMenuView();
+            menu.getInput();
+        }
+        
+    }
+    
+    private static final class SolveHandler implements MenuItemCommand {
+
+        @Override
+        public String getName() {
+            return "Solve";
+        }
+
+        @Override
+        public void handleIt() {
+            System.out.println("Coming soon!");
+        }
+    
+    }
 }

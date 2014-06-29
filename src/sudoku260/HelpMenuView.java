@@ -14,8 +14,16 @@ import java.util.Scanner;
  * @author Ken
  */
 public class HelpMenuView extends AbstractMenu {
-    private static HashMap<String, MenuItemCommand> menuItems = new HashMap<String, MenuItemCommand>();
-    static {
+    /* The Help Strings: */
+    private static final String about = "The game of sudoku is a simple number game. The\n" +
+                "board consists of a nine by nine grid. The goal of the game \n" +
+                "is to fill each square with the numbers 1 - 9.";
+    private static final String scoring = "Your score in Sudoku is calculated based on how fast\n" +
+                "you can solve the puzzle. Faster times, means a higher score!";
+    private static final String rules = "Each row, column and 3x3 square within the Sudoku\n" +
+                "board must contain the values 1 through 9. There can be no duplicates.";
+    
+    public HelpMenuView() {
                 menuItems.put("A", new AboutGameHandler());
                 menuItems.put("R", new RulesHandler());
                 menuItems.put("S", new ScoringHandler());
@@ -30,8 +38,7 @@ public class HelpMenuView extends AbstractMenu {
 
         @Override
         public void handleIt() {
-            GameMenuView gameMenu = displayAbout();
-            gameMenu.getInput();
+            System.out.println("about");
         }
         
     }
@@ -45,8 +52,7 @@ public class HelpMenuView extends AbstractMenu {
 
         @Override
         public void handleIt() {
-            GameMenuView gameMenu = displayRules();
-            gameMenu.getInput();
+            System.out.println(rules);
         }
         
     }
@@ -59,8 +65,7 @@ public class HelpMenuView extends AbstractMenu {
 
         @Override
         public void handleIt() {
-            GameMenuView gameMenu = displayScoring();
-            gameMenu.getInput();
+            System.out.println(scoring);
         }
         
     }
@@ -122,17 +127,14 @@ public class HelpMenuView extends AbstractMenu {
 //    public void displayAbout() {
 //        System.out.println();
 //        System.out.println(helpBorder());
-//        System.out.println("The game of sudoku is a simple number game. The\n" +
-//                "board consists of a nine by nine grid. The goal of the game \n" +
-//                "is to fill each square with the numbers 1 - 9.");
+//        System.out.println();
 //       System.out.print(helpBorder());
 //    }
 //    
 //    public void displayRules() {
 //         System.out.println();
 //        System.out.println(helpBorder());
-//        System.out.println("Each row, column and 3x3 square within the Sudoku\n" +
-//                "board must contain the values 1 through 9. There can be no duplicates.");
+//        System.out.println();
 //       System.out.print(helpBorder());
 //    }
 //    
