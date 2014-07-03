@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package sudoku260;
+package edu.byui.teamawesome.sudoku260;
 
+import edu.byui.teamawesome.sudoku260.menu.MainMenuView;
 import java.util.Scanner;
 
 /**

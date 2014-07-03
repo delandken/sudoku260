@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package sudoku260;
+package edu.byui.teamawesome.sudoku260.menu;
 
+import edu.byui.teamawesome.sudoku260.Sudoku260;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -12,11 +13,11 @@ import java.util.Scanner;
  *
  * @author ken
  */
-public abstract class AbstractMenu {
+public class Menu implements DisplayInfo, EnterInfo {
 //    protected static String[][] menuItems;
     protected HashMap<String, MenuItemCommand> menuItems = new HashMap<String, MenuItemCommand>();
    
-    public AbstractMenu(){};
+    public Menu(){};
  
     public void getInput() {
         String command;

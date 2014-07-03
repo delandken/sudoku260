@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package sudoku260;
+package edu.byui.teamawesome.sudoku260.menu;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -13,7 +13,7 @@ import java.util.Scanner;
  *
  * @author Ken
  */
-public class HelpMenuView extends AbstractMenu {
+public class HelpMenuView extends Menu {
     /* The Help Strings: */
     private static final String about = "The game of sudoku is a simple number game. The\n" +
                 "board consists of a nine by nine grid. The goal of the game \n" +

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package sudoku260;
+package edu.byui.teamawesome.sudoku260.menu;
 
 import java.util.Scanner;
 
@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author Ken
  */
-public class MainMenuView extends AbstractMenu {
+public class MainMenuView extends Menu {
     
     
     public MainMenuView() {

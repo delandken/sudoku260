@@ -4,16 +4,19 @@
  * and open the template in the editor.
  */
 
-package sudoku260;
+package edu.byui.teamawesome.sudoku260.menu;
 
+import edu.byui.teamawesome.sudoku260.Sudoku260;
 import java.util.Scanner;
 
 /**
  *
  * @author AshleyFaust
  */
-public class SettingsMenuView extends AbstractMenu {
+public class SettingsMenuView extends Menu {
     private static String playerName = "Player 1";
+    
+    private static GameDifficulty currentDifficulty;
     
     public SettingsMenuView() {
         menuItems.put("N", new ChangePlayerHandler());
@@ -55,17 +58,17 @@ public class SettingsMenuView extends AbstractMenu {
                }
 
                if(response == "easy" ) {
-                   System.out.println("You have chosen easy. Good luck!");
+                   currentDifficulty = GameDifficulty.EASY;
                    break;
                }
 
                if (response == "medium") {
-                   System.out.println("You have chosen medium. Good luck!");
+                   currentDifficulty = GameDifficulty.MEDIUM;
                    break;
                }
 
                if (response == "hard") {
-                   System.out.println("You have chosen hard. Good luck! You'll need it!");
+                   currentDifficulty = GameDifficulty.HARD;
                    break;
                }
                else System.out.println("Invalid option.");

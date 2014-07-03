@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 
-package sudoku260;
+package edu.byui.teamawesome.sudoku260.menu;
 
+import edu.byui.teamawesome.sudoku260.Board;
+import edu.byui.teamawesome.sudoku260.CoordinateWrapper;
+import edu.byui.teamawesome.sudoku260.GetCellController;
+import edu.byui.teamawesome.sudoku260.GetValueController;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,7 +17,7 @@ import java.util.Scanner;
  *
  * @author Ken
  */
-public class GameMenuView extends AbstractMenu {
+public class GameMenuView extends Menu {
     private Board theBoard;
     
     private static final GetCellController getCellController = new GetCellController();
