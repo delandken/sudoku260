@@ -6,9 +6,12 @@
 
 package edu.byui.teamawesome.sudoku260;
 
+import edu.byui.teamawesome.sudoku260.values.AlphaValues;
+import edu.byui.teamawesome.sudoku260.values.SudokuValue;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.List;
 
 /**
@@ -36,10 +39,15 @@ public class Board implements Serializable {
     //This method is used by the board generation process to count how many solutions our board has.
     private int possibleSolutions;
     
+    private SudokuValue valueSet;
+    
     //Our default constructor.
     public Board() {
         theBoard = generateBoard(theBoard, 0);
         drillBoard();
+        
+        valueSet = new AlphaValues();
+        
     }
     
     //A private method which will generate a fully solved board. This is a recursive method.
@@ -240,7 +248,7 @@ public class Board implements Serializable {
             if(i % 3 == 0)
               sb.append("|");
             
-            sb.append(theBoard[i].getValue() + " ");
+            sb.append(valueSet.getValueAtOrdinal(theBoard[i].getValue() - 1) + " ");
       }
       sb.append("|\n======================\n");
       
