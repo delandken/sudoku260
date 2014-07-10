@@ -6,7 +6,10 @@
 
 package edu.byui.teamawesome.sudoku260.menu;
 
+import edu.byui.teamawesome.sudoku260.exceptions.MenuExceptions;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,7 +34,11 @@ public class MainMenuView extends Menu {
         @Override
         public void handleIt() {
             GameMenuView gameMenu = new GameMenuView();
-            gameMenu.getInput();
+            try {
+                gameMenu.getInput();
+            } catch (MenuExceptions ex) {
+                System.out.println(ex.getMessage());
+            }
         }
         
     }
@@ -46,7 +53,11 @@ public class MainMenuView extends Menu {
         @Override
         public void handleIt() {
             SettingsMenuView settingsMenu = new SettingsMenuView();
-            settingsMenu.getInput();
+            try {
+                settingsMenu.getInput();
+            } catch (MenuExceptions ex) {
+                System.out.println(ex.getMessage());
+            }
         }
         
     }
@@ -61,7 +72,11 @@ public class MainMenuView extends Menu {
         @Override
         public void handleIt() {
             HelpMenuView helpMenu = new HelpMenuView();
-            helpMenu.getInput();
+            try {
+                helpMenu.getInput();
+            } catch (MenuExceptions ex) {
+                System.out.println(ex.getMessage());
+            }
         }
         
     }

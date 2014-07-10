@@ -4,10 +4,12 @@
  */
 package edu.byui.teamawesome.sudoku260.menu;
 
+import edu.byui.teamawesome.sudoku260.exceptions.MenuExceptions;
+
 /**
  *
  * @author ken
  */
 public interface EnterInfo {
-    public void getInput();
+    public void getInput() throws MenuExceptions;
 }

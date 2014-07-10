@@ -5,6 +5,7 @@
 package edu.byui.teamawesome.sudoku260.menu;
 
 import edu.byui.teamawesome.sudoku260.Sudoku260;
+import edu.byui.teamawesome.sudoku260.exceptions.MenuExceptions;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -19,7 +20,7 @@ public class Menu implements DisplayInfo, EnterInfo {
    
     public Menu(){};
  
-    public void getInput() {
+    public void getInput() throws MenuExceptions {
         String command;
         Scanner inFile = Sudoku260.input;
         
@@ -32,6 +33,9 @@ public class Menu implements DisplayInfo, EnterInfo {
             if(!command.equals("Q")) {
                 if(menuItems.containsKey(command)) {
                     menuItems.get(command).handleIt();
+                }
+                else {
+                    throw new MenuExceptions ("invalid command");
                 }
             }
         } while (!command.equals("Q"));

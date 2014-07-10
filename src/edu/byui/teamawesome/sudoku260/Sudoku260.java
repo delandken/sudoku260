@@ -6,8 +6,11 @@
 
 package edu.byui.teamawesome.sudoku260;
 
+import edu.byui.teamawesome.sudoku260.exceptions.MenuExceptions;
 import edu.byui.teamawesome.sudoku260.menu.MainMenuView;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -49,8 +52,9 @@ public class Sudoku260 {
 //        helpMenu.getInput();
         
         MainMenuView mainMenu = new MainMenuView();
-        mainMenu.getInput();
-        
+        try {
+            mainMenu.getInput();
+            
 //        HighScoreListView highscores = new HighScoreListView();
 //        highscores.addHighScore(10);
 //        highscores.addHighScore(5);
@@ -59,6 +63,14 @@ public class Sudoku260 {
 //        highscores.addHighScore(50);
 //        highscores.addHighScore(105);
 //        highscores.addHighScore(200);
+        } catch (MenuExceptions ex) {
+            System.out.println(ex.getMessage());
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        finally {
+            input.close();
+        }
     }
     
     public void getName() {

@@ -10,8 +10,11 @@ import edu.byui.teamawesome.sudoku260.Board;
 import edu.byui.teamawesome.sudoku260.CoordinateWrapper;
 import edu.byui.teamawesome.sudoku260.GetCellController;
 import edu.byui.teamawesome.sudoku260.GetValueController;
+import edu.byui.teamawesome.sudoku260.exceptions.MenuExceptions;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -99,7 +102,11 @@ public class GameMenuView extends Menu {
         @Override
         public void handleIt() {
             HelpMenuView menu = new HelpMenuView();
-            menu.getInput();
+            try {
+                menu.getInput();
+            } catch (MenuExceptions ex) {
+                System.out.println(ex.getMessage());
+            }
         }
         
     }
