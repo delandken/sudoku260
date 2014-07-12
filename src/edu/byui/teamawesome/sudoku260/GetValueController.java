@@ -6,6 +6,7 @@
 
 package edu.byui.teamawesome.sudoku260;
 
+import edu.byui.teamawesome.sudoku260.exceptions.OutOfRangeException;
 import java.util.Scanner;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Scanner;
  * @author vdelake
  */
 public class GetValueController {
-    public static int promptForValue() {
+    public static int promptForValue() throws OutOfRangeException {
          Scanner in = Sudoku260.input;
          int value;
          do {
@@ -28,8 +29,9 @@ public class GetValueController {
                  value = Integer.parseInt(response);
                  if(value >= 0 && value <= 9) 
                      return value; 
+                 else
+                     throw new OutOfRangeException("'" + value + " is invalid.");
              } catch (NumberFormatException ex) {}
-             System.out.println("Invalid value.");
          } while(true);
     }
 }

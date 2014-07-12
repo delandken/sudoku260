@@ -11,6 +11,7 @@ import edu.byui.teamawesome.sudoku260.CoordinateWrapper;
 import edu.byui.teamawesome.sudoku260.GetCellController;
 import edu.byui.teamawesome.sudoku260.GetValueController;
 import edu.byui.teamawesome.sudoku260.exceptions.MenuExceptions;
+import edu.byui.teamawesome.sudoku260.exceptions.OutOfRangeException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -53,7 +54,15 @@ public class GameMenuView extends Menu {
            CoordinateWrapper coordinates = getCellController.promptForCoordinates();
 
             if(theBoard.canSetCell(coordinates)) {
-                int value = GetValueController.promptForValue();
+                int value;
+                while(true) {
+                    try {
+                       value = GetValueController.promptForValue();
+                       break;
+                    } catch (OutOfRangeException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
                 theBoard.setValueAt(coordinates, value);
             }
         }
