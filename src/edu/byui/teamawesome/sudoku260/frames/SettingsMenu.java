@@ -29,27 +29,52 @@ public class SettingsMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jbDifficulty = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jSettingsTitle = new javax.swing.JTextArea();
+        jbChangePlayer = new javax.swing.JButton();
+        jbQuit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Settings");
+        setBackground(new java.awt.Color(255, 204, 0));
 
         jbDifficulty.setText("Change Difficulty");
+
+        jSettingsTitle.setColumns(20);
+        jSettingsTitle.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jSettingsTitle.setRows(5);
+        jSettingsTitle.setText("Settings");
+        jScrollPane1.setViewportView(jSettingsTitle);
+
+        jbChangePlayer.setText("Change Player");
+
+        jbQuit.setText("Quit");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jbDifficulty)
-                .addContainerGap(240, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(188, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbQuit, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbDifficulty)
+                    .addComponent(jbChangePlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(161, 161, 161))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jbDifficulty)
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbDifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbChangePlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbQuit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();
@@ -91,6 +116,10 @@ public class SettingsMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jSettingsTitle;
+    private javax.swing.JButton jbChangePlayer;
     private javax.swing.JButton jbDifficulty;
+    private javax.swing.JButton jbQuit;
     // End of variables declaration//GEN-END:variables
 }
