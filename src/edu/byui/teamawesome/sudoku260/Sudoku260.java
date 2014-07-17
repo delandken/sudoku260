@@ -7,6 +7,7 @@
 package edu.byui.teamawesome.sudoku260;
 
 import edu.byui.teamawesome.sudoku260.exceptions.MenuExceptions;
+import edu.byui.teamawesome.sudoku260.frames.MainFrame;
 import edu.byui.teamawesome.sudoku260.menu.MainMenuView;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -25,6 +26,8 @@ public class Sudoku260 {
     private static String playerName;
     private static String instructions = "Welcome to Sudoku! This game is really fun! You're gonna like it.";
     private static Board theBoard;
+    
+    private static MainFrame mainFrame;
     
     public static Scanner input = new Scanner(System.in);
     
@@ -51,25 +54,47 @@ public class Sudoku260 {
 //        HelpMenuView helpMenu = new HelpMenuView();
 //        helpMenu.getInput();
         
-        MainMenuView mainMenu = new MainMenuView();
+//        MainMenuView mainMenu = new MainMenuView();
+//        try {
+//            mainMenu.getInput();
+//            
+////        HighScoreListView highscores = new HighScoreListView();
+////        highscores.addHighScore(10);
+////        highscores.addHighScore(5);
+////        highscores.addHighScore(30);
+////        highscores.addHighScore(20);
+////        highscores.addHighScore(50);
+////        highscores.addHighScore(105);
+////        highscores.addHighScore(200);
+//        } catch (MenuExceptions ex) {
+//            System.out.println(ex.getMessage());
+//        } catch (Exception ex) {
+//            System.out.println(ex);
+//        }
+//        finally {
+//            input.close();
+//        }
+        
         try {
-            mainMenu.getInput();
+            Sudoku260 game = new Sudoku260();
             
-//        HighScoreListView highscores = new HighScoreListView();
-//        highscores.addHighScore(10);
-//        highscores.addHighScore(5);
-//        highscores.addHighScore(30);
-//        highscores.addHighScore(20);
-//        highscores.addHighScore(50);
-//        highscores.addHighScore(105);
-//        highscores.addHighScore(200);
-        } catch (MenuExceptions ex) {
-            System.out.println(ex.getMessage());
-        } catch (Exception ex) {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+
+                @Override
+                public void run() {
+                    Sudoku260.mainFrame = new MainFrame();
+                    Sudoku260.mainFrame.setVisible(true);
+                }
+                
+            });
+            
+            
+        } catch (Throwable ex) {
             System.out.println(ex);
-        }
-        finally {
-            input.close();
+        } finally {
+            if(Sudoku260.mainFrame != null) {
+                Sudoku260.mainFrame.dispose();
+            }
         }
     }
     
