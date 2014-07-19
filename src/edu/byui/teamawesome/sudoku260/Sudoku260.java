@@ -7,6 +7,7 @@
 package edu.byui.teamawesome.sudoku260;
 
 import edu.byui.teamawesome.sudoku260.exceptions.MenuExceptions;
+import edu.byui.teamawesome.sudoku260.frames.GameFrame;
 import edu.byui.teamawesome.sudoku260.frames.MainFrame;
 import edu.byui.teamawesome.sudoku260.menu.MainMenuView;
 import java.util.Scanner;

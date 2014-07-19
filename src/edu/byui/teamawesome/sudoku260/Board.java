@@ -39,14 +39,14 @@ public class Board implements Serializable {
     //This method is used by the board generation process to count how many solutions our board has.
     private int possibleSolutions;
     
-    private SudokuValue valueSet;
+    public static SudokuValue valueTranslator;
     
     //Our default constructor.
     public Board() {
         theBoard = generateBoard(theBoard, 0);
         drillBoard();
         
-        valueSet = new AlphaValues();
+        valueTranslator = new AlphaValues();
         
     }
     
@@ -221,6 +221,10 @@ public class Board implements Serializable {
             return 0;
     }
     
+    public Cell[] getBoard() {
+        return theBoard;
+    }
+    
     
     public ArrayList<Integer> getPossibleValuesAt(CoordinateWrapper coordinateWrapper) {
         return theBoard[(coordinateWrapper.getX() - 1) * 9 + (coordinateWrapper.getY() - 1)].getPossibleValues();
@@ -248,7 +252,7 @@ public class Board implements Serializable {
             if(i % 3 == 0)
               sb.append("|");
             
-            sb.append(valueSet.getValueAtOrdinal(theBoard[i].getValue() - 1) + " ");
+            sb.append(valueTranslator.getValueAtOrdinal(theBoard[i].getValue() - 1) + " ");
       }
       sb.append("|\n======================\n");
       
@@ -264,7 +268,7 @@ public class Board implements Serializable {
     * needs to be aware of these cells.
     * @author Ken
     */
-   private class Cell {
+   public class Cell {
        private int value = 0;
        private boolean fixed = true; //Assume it's fixed unless told otherwise.
 

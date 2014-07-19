@@ -31,4 +31,16 @@ public class AlphaValues implements SudokuValue {
         }
         return values.values()[value].toString();
     }
+    
+    public boolean isValidValue(String val) {
+        if(val.equals("-")) {
+            val = "DASH";
+        }
+        try {
+            values.valueOf(val);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+    }
 }

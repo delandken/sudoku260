@@ -6,6 +6,8 @@
 
 package edu.byui.teamawesome.sudoku260.frames;
 
+import edu.byui.teamawesome.sudoku260.Board;
+
 /**
  *
  * @author ken
@@ -175,8 +177,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jbExitActionPerformed
 
     private void jbNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNewGameActionPerformed
-        EnterPlayerNames form = new EnterPlayerNames();
-        form.setVisible(true);
+        Board aBoard = new Board();
+        GameFrame gameFrame = new GameFrame(aBoard);
+        gameFrame.setVisible(true);
     }//GEN-LAST:event_jbNewGameActionPerformed
 
     private void jbHelpMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHelpMenuActionPerformed

@@ -11,4 +11,5 @@ package edu.byui.teamawesome.sudoku260.values;
 public interface SudokuValue {
     
     public String getValueAtOrdinal(int value);
+    public boolean isValidValue(String val);
 }
