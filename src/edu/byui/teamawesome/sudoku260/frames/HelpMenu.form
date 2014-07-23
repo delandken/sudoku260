@@ -24,19 +24,18 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" min="-2" pref="162" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jbScoring" min="-2" pref="133" max="-2" attributes="0"/>
-                          <Component id="jbAbout" min="-2" max="-2" attributes="0"/>
-                          <Component id="jbRules" alignment="1" min="-2" pref="133" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+              <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jbScoring" min="-2" pref="133" max="-2" attributes="0"/>
+                  <Component id="jbAbout" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbRules" alignment="1" min="-2" pref="133" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="136" max="32767" attributes="0"/>
+              <EmptySpace pref="159" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="376" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -44,14 +43,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="78" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="166" max="-2" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
               <Component id="jbAbout" min="-2" pref="43" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jbScoring" min="-2" pref="38" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jbRules" min="-2" pref="39" max="-2" attributes="0"/>
-              <EmptySpace pref="81" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,16 +59,19 @@
     <Component class="javax.swing.JButton" name="jbAbout">
       <Properties>
         <Property name="text" type="java.lang.String" value="About Sudoku"/>
+        <Property name="actionCommand" type="java.lang.String" value="about"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jbScoring">
       <Properties>
         <Property name="text" type="java.lang.String" value="Scoring"/>
+        <Property name="actionCommand" type="java.lang.String" value="scoring"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jbRules">
       <Properties>
         <Property name="text" type="java.lang.String" value="The Rules"/>
+        <Property name="actionCommand" type="java.lang.String" value="rules"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -79,11 +81,12 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jHelpMenu">
+        <Component class="javax.swing.JTextArea" name="jHelpText">
           <Properties>
-            <Property name="columns" type="int" value="20"/>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="columns" type="int" value="10"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Grande" size="24" style="0"/>
+              <Font name="Lucida Grande" size="12" style="0"/>
             </Property>
             <Property name="rows" type="int" value="5"/>
             <Property name="text" type="java.lang.String" value="Help Menu"/>

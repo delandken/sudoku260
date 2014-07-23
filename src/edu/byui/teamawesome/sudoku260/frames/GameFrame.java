@@ -15,10 +15,13 @@ import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -33,6 +36,8 @@ public class GameFrame extends javax.swing.JFrame {
 
     private Board board;
     private ArrayList<TextCell> cellList = new ArrayList<TextCell>();
+    
+    private JLabel possibleValuesLabel;
     /**
      * Creates new form GameFrame
      */
@@ -49,12 +54,14 @@ public class GameFrame extends javax.swing.JFrame {
         
         
         ChangeListener listener = new ChangeListener();
+        CellFocusHandler focusHandler = new CellFocusHandler();
         //New Text Field Test:
         for(Cell cell : board.getBoard()) {
             TextCell aCell = new TextCell(cell);
             jBoardFrame.add(aCell);
             cellList.add(aCell);
             aCell.setChangeListener(listener);
+            aCell.addFocusListener(focusHandler);
         }
         this.add(jBoardFrame);
                 
@@ -78,7 +85,12 @@ public class GameFrame extends javax.swing.JFrame {
         
         jMenuFrame.add(byuiButton);
         jMenuFrame.add(numButton);
+        
+        possibleValuesLabel = new JLabel("");
+        jMenuFrame.add(possibleValuesLabel);
         this.add(jMenuFrame); 
+        
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
     private void refresh() {
@@ -108,6 +120,26 @@ public class GameFrame extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             Board.setValueTranslator(e.getActionCommand());
             retranslate();
+        }
+        
+    }
+    
+    private class CellFocusHandler implements FocusListener {
+
+        @Override
+        public void focusGained(FocusEvent e) {
+            TextCell thisElement = (TextCell)e.getComponent();
+            ArrayList<Integer> possibleValues = thisElement.getPossibleValues();
+            String posValues = "Possible Values: ";
+            for(Integer val : possibleValues) {
+                posValues += Board.valueTranslator.getValueAtOrdinal(val - 1) + " ";
+            }
+            possibleValuesLabel.setText(posValues);
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            
         }
         
     }

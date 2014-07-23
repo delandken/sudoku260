@@ -6,19 +6,52 @@
 
 package edu.byui.teamawesome.sudoku260.frames;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+
 /**
  *
  * @author AshleyFaust
  */
 public class HelpMenu extends javax.swing.JFrame {
 
+    private static HashMap<String, String> helpMap = new HashMap<String, String>();
+    static {
+        helpMap.put("about", "The game of sudoku is a simple number game. The\n" +
+                "board consists of a nine by nine grid. The goal of the game \n" +
+                "is to fill each square with the numbers 1 - 9.");
+        helpMap.put("scoring", "Your score in Sudoku is calculated based on how fast\n" +
+                "you can solve the puzzle. Faster times, means a higher score!");
+        helpMap.put("rules", "Each row, column and 3x3 square within the Sudoku\n" +
+                "board must contain the values 1 through 9. There can be no duplicates.");
+    }
+    
     /**
      * Creates new form HelpMenu
      */
     public HelpMenu() {
         initComponents();
+        MenuListener menuListener = new MenuListener();
+        jbAbout.addActionListener(menuListener);
+        jbRules.addActionListener(menuListener);
+        jbScoring.addActionListener(menuListener);
+        
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
+    private class MenuListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            jHelpText.setText(helpMap.get(e.getActionCommand()));
+        }
+        
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,50 +65,54 @@ public class HelpMenu extends javax.swing.JFrame {
         jbScoring = new javax.swing.JButton();
         jbRules = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jHelpMenu = new javax.swing.JTextArea();
+        jHelpText = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jbAbout.setText("About Sudoku");
+        jbAbout.setActionCommand("about");
 
         jbScoring.setText("Scoring");
+        jbScoring.setActionCommand("scoring");
 
         jbRules.setText("The Rules");
+        jbRules.setActionCommand("rules");
 
-        jHelpMenu.setColumns(20);
-        jHelpMenu.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jHelpMenu.setRows(5);
-        jHelpMenu.setText("Help Menu");
-        jScrollPane1.setViewportView(jHelpMenu);
+        jHelpText.setEditable(false);
+        jHelpText.setColumns(10);
+        jHelpText.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
+        jHelpText.setRows(5);
+        jHelpText.setText("Help Menu");
+        jScrollPane1.setViewportView(jHelpText);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(144, 144, 144)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jbScoring, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbAbout)
-                            .addComponent(jbRules, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addGap(150, 150, 150)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbScoring, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbAbout)
+                    .addComponent(jbRules, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(159, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jbAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbScoring, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jbRules, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -117,7 +154,7 @@ public class HelpMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea jHelpMenu;
+    private javax.swing.JTextArea jHelpText;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAbout;
     private javax.swing.JButton jbRules;
