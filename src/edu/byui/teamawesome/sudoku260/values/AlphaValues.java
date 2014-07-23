@@ -43,4 +43,16 @@ public class AlphaValues implements SudokuValue {
             return false;
         }
     }
+    
+    public int getOrdinalForValue(String val) {
+        if(val.equals("-")) {
+            val = "DASH";
+        }
+        
+        try {
+            return values.valueOf(val).ordinal() + 1;
+        } catch (IllegalArgumentException e) {
+          return 0;  
+        }
+    }
 }

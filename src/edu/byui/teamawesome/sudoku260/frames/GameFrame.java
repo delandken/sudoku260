@@ -9,12 +9,21 @@ package edu.byui.teamawesome.sudoku260.frames;
 import edu.byui.teamawesome.sudoku260.Board;
 import edu.byui.teamawesome.sudoku260.Board.Cell;
 import edu.byui.teamawesome.sudoku260.uicomponents.TextCell;
+import edu.byui.teamawesome.sudoku260.values.AlphaValues;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -23,7 +32,7 @@ import javax.swing.JTextField;
 public class GameFrame extends javax.swing.JFrame {
 
     private Board board;
-    
+    private ArrayList<TextCell> cellList = new ArrayList<TextCell>();
     /**
      * Creates new form GameFrame
      */
@@ -39,19 +48,68 @@ public class GameFrame extends javax.swing.JFrame {
         jBoardFrame.setLayout(new GridLayout(0, 9));
         
         
+        ChangeListener listener = new ChangeListener();
         //New Text Field Test:
         for(Cell cell : board.getBoard()) {
             TextCell aCell = new TextCell(cell);
             jBoardFrame.add(aCell);
+            cellList.add(aCell);
+            aCell.setChangeListener(listener);
         }
         this.add(jBoardFrame);
                 
-        
         JPanel jMenuFrame = new javax.swing.JPanel();
-        this.add(jMenuFrame);
-//        initComponents();
-//        jBoardFrame.add(new JTextField("A Test"));
- 
+        jMenuFrame.setLayout(new GridLayout(0, 1));
+        
+        ButtonGroup translatorGroup = new ButtonGroup();
+        TranslatorHandler translatorHandler = new TranslatorHandler();
+        JRadioButton byuiButton = new JRadioButton("BYU-Idaho");
+        byuiButton.setActionCommand(Board.ValueTranslators.ALPHA.toString());
+        byuiButton.setSelected(true);
+        byuiButton.addActionListener(translatorHandler);
+        
+        JRadioButton numButton = new JRadioButton("Numeric");
+        numButton.setActionCommand(Board.ValueTranslators.NUMERIC.toString());
+        numButton.addActionListener(translatorHandler);
+        
+        
+        translatorGroup.add(byuiButton);
+        translatorGroup.add(numButton);
+        
+        jMenuFrame.add(byuiButton);
+        jMenuFrame.add(numButton);
+        this.add(jMenuFrame); 
+    }
+    
+    private void refresh() {
+        for(TextCell cell : cellList) {
+            cell.refresh();
+        }
+    }
+    
+    private void retranslate() {
+        for(TextCell cell : cellList) {
+            cell.retranslate();
+        }
+    }
+    
+    private class ChangeListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            refresh();
+        }
+        
+    }
+    
+    
+    private class TranslatorHandler implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Board.setValueTranslator(e.getActionCommand());
+            retranslate();
+        }
+        
     }
 
     /**
@@ -63,6 +121,7 @@ public class GameFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jBoardFrame = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -102,6 +161,7 @@ public class GameFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel jBoardFrame;
     // End of variables declaration//GEN-END:variables
 }

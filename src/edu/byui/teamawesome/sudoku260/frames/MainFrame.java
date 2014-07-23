@@ -176,21 +176,22 @@ public class MainFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jbExitActionPerformed
 
-    private void jbNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNewGameActionPerformed
-        Board aBoard = new Board();
-        GameFrame gameFrame = new GameFrame(aBoard);
-        gameFrame.setVisible(true);
-    }//GEN-LAST:event_jbNewGameActionPerformed
+    private void jbSettingsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSettingsMenuActionPerformed
+        // PLACEHOLDER:
+        Integer test = null;
+        //Show the settings Menu.
+    }//GEN-LAST:event_jbSettingsMenuActionPerformed
 
     private void jbHelpMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHelpMenuActionPerformed
         //PLACEHOLDER:
         //Show the Help Menu.
     }//GEN-LAST:event_jbHelpMenuActionPerformed
 
-    private void jbSettingsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSettingsMenuActionPerformed
-        // PLACEHOLDER:
-        //Show the settings Menu.
-    }//GEN-LAST:event_jbSettingsMenuActionPerformed
+    private void jbNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNewGameActionPerformed
+        Board aBoard = new Board();
+        GameFrame gameFrame = new GameFrame(aBoard);
+        gameFrame.setVisible(true);
+    }//GEN-LAST:event_jbNewGameActionPerformed
 
     /**
      * @param args the command line arguments

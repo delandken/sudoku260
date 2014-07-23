@@ -7,6 +7,7 @@
 package edu.byui.teamawesome.sudoku260;
 
 import edu.byui.teamawesome.sudoku260.values.AlphaValues;
+import edu.byui.teamawesome.sudoku260.values.NumericValues;
 import edu.byui.teamawesome.sudoku260.values.SudokuValue;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,6 +25,20 @@ import java.util.List;
  * @author Ken
  */
 public class Board implements Serializable {
+    
+    public enum ValueTranslators {
+        ALPHA,
+        NUMERIC
+    }
+
+    public static void setValueTranslator(String actionCommand) {
+        ValueTranslators val = ValueTranslators.valueOf(actionCommand);
+        if(val.equals(ValueTranslators.ALPHA)) {
+            valueTranslator = new AlphaValues();
+        } else {
+            valueTranslator = new NumericValues();
+        }
+    }
     //This attribute represents the cells that make up our grid.
     private Cell[] theBoard = new Cell[81];
     //This attribute represents the rows in our grid.
@@ -271,6 +286,7 @@ public class Board implements Serializable {
    public class Cell {
        private int value = 0;
        private boolean fixed = true; //Assume it's fixed unless told otherwise.
+       private boolean valid = true;
 
        //This value should NOT be settable by the outside world.
        private ArrayList<CellGroup> groups = new ArrayList<CellGroup>();
@@ -282,6 +298,7 @@ public class Board implements Serializable {
 
        public void setValue(int value) {
            this.value = value;
+           this.changed();
        }
 
        public void setFixed(boolean fixed) {
@@ -291,6 +308,14 @@ public class Board implements Serializable {
        public boolean isFixed() {
            return fixed;
        }
+       
+       public boolean isValid() {
+           return valid;
+       }
+       
+       public void isValid(boolean valid) {
+           this.valid = valid;
+       }
 
        public void assignToGroup(CellGroup group) {
            groups.add(group);
@@ -299,6 +324,13 @@ public class Board implements Serializable {
 
        public ArrayList<CellGroup> getGroups() {
            return groups;
+       }
+       
+       private void changed() {
+           //Trigger a dirty check in each of my groups when I change.
+           for(CellGroup group : groups) {
+               group.dirtyCheck();
+           }
        }
 
        public boolean isValueAllowed(int value) {
@@ -360,6 +392,25 @@ public class Board implements Serializable {
            return cells;
        }
 
+       public void dirtyCheck() {
+           //Make an array of cells (0 through 9)
+           Cell valueHolder[] = new Cell[9];
+           for(Cell cell : cells) {
+               //Temporarily flag this cell as valid:
+               cell.isValid(true);
+               
+               if(cell.getValue() != 0) {
+                   if(valueHolder[cell.getValue() - 1] != null) {
+                       //Mark both as dirty:
+                       valueHolder[cell.getValue() - 1].isValid(false);
+                       cell.isValid(false);
+                   }
+                   
+                   valueHolder[cell.getValue() - 1] = cell;
+               }
+           }
+       }
+       
        public boolean isValueAllowed(int value) {
            if(value == 0) {
                return false;

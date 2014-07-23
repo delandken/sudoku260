@@ -12,4 +12,5 @@ public interface SudokuValue {
     
     public String getValueAtOrdinal(int value);
     public boolean isValidValue(String val);
+    public int getOrdinalForValue(String val);
 }
